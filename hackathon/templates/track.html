@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<style>
+    html {
+    height: 100%
+}
+    body{
+        margin: 0;
+        font-family: sans-serif;
+        background-image: url(/static/space.jpg );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: ivory;
+
+    }
+.nav{
+    overflow: hidden;
+    background-color: black;
+
+}
+.nav a{
+    float: left;
+    text-decoration: none;
+    color: ivory;
+    padding: 20px 30px;
+    font-size: 25px;
+    text-align: center;
+    font-family: sans-serif;
+}
+.nav a:hover{
+    background-color: #333;
+}
+#tasks{
+    margin: auto;
+    text-align: center;
+}
+#tasks h1{
+    font-size: 45px;
+}
+#tasks h2{
+    font-size: 35px;
+}
+img{
+    margin: auto;
+}
+</style>
+<body>
+    <div class="nav">
+        <a href="/start">Start</a>
+        <a href="/track">Track</a>
+        <a href="/add">Add</a>
+        <a href="/taskz">Tasks</a>
+    </div>
+<div id="tasks">
+{% if 7 > points %}
+    <h1>Planet - Tatooine</h1>
+    <img src="{{url_for('static' , filename='1.png')}}">
+    <h2>Complete {{7 - points}} More Tasks to move to the Next Planet</h2>
+{% elif 10 > points %}
+    <h1>Planet - Death Star</h1>
+    <img src="{{url_for('static' , filename='2.png')}}">
+    <h2>Complete {{10 - points}} More Tasks to move to the Next Planet</h2>
+{% elif 13 > points %}
+    <h1>Hoth</h1>
+    <img src="{{url_for('static' , filename='3.png')}}">
+    <h2>Complete {{13 - points}} More Tasks to move to the Next Planet</h2>
+{% elif 15 > points %}
+    <h1>Planet - Cloud City</h1>
+    <img src="{{url_for('static' , filename='4.png')}}">
+    <h2>Complete {{15 - points}} More Tasks to move to the Next Planet</h2>
+{% elif points > 15 %}
+    <h1>Planet - Death Star 2</h1>
+    <img src="{{url_for('static' , filename='5.png')}}">
+{% endif %}
+</div>
+</body>
+<style>
+
+</style>
+</html>

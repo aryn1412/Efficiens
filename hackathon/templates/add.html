@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        font-family: sans-serif;
+        color: ivory;
+    }
+.nav{
+    overflow: hidden;
+    background-color: black;
+
+}
+.nav a{
+    float: left;
+    text-decoration: none;
+    color: ivory;
+    padding: 20px 30px;
+    font-size: 25px;
+    text-align: center;
+    font-family: sans-serif;
+}
+.nav a:hover{
+    background-color: #333;
+}
+#tasks{
+    margin: auto;
+    text-align: left;
+    width: 60%;
+    margin: auto;
+}
+#head{
+    font-size: 45px;
+    text-align: center;
+}
+#tasks h1{
+    font-size: 30px;
+
+}
+.name{
+text-align: left;
+font-family: sans-serif;
+}
+#name-form{
+width: 100%;
+font-size: 20px;
+}
+input{
+display: block;
+margin: auto;
+}
+#button{
+font-family:sans-serif;
+font-size: 27px
+}
+#range_a{
+    width: 100%;
+    height: 17px;
+}
+#range_b{
+    width: 100%;
+    height: 17px;
+}
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index: -1;
+  }
+  span{
+      color: lightblue;
+  }
+</style>
+<body>
+    <div class="nav">
+        <a href="/start">Start</a>
+        <a href="/track">Track</a>
+        <a href="/add">Add</a>
+        <a href="/taskz">Tasks</a>
+    </div>
+    <video autoplay muted loop id="myVideo">
+        <source src="{{url_for('static' , filename='space.mp4')}}" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+<h1 id="head">Add</h1>
+<div id="tasks">
+    <form method="POST" onsubmit="change()">
+    <h1 class="name">Name:</h1>
+    <input id="name-form" type="text" name="name">
+    <br>
+    <h1 class="name">Difficulty: &nbsp <span id="val_a">1</span></h1>
+    <input id="range_a" type="range" min="1" max="10" value="1" name="difficulty">
+    <br>
+    <h1 class="name">Estimated time(mins): &nbsp <span id="val_b">15</span></h1>
+    <input id="range_b" type="range" min="15" max="60" value="15" name="Estimated_time">
+    <br>
+    <input style="display:none" id="dif" type="text" value="" name="dif">
+
+    <input id="button" type="submit" value="submit">
+    </form>
+
+</div>
+</body>
+<script>
+var range_a = document.getElementById("range_a")
+var range_b = document.getElementById("range_b")
+var val_a = document.getElementById("val_a")
+var val_b = document.getElementById("val_b")
+range_a.oninput = function() {
+  val_a.innerHTML = this.value;
+}
+range_b.oninput = function() {
+  val_b.innerHTML = this.value;
+}
+function change() {
+    if (document.getElementById("range_a").value < 4 || document.getElementById("range_b") < 31) {
+        document.getElementById("dif").value = "E";
+    }
+    else if (document.getElementById("range_a").value < 8 || document.getElementById("range_b") < 46) {
+        document.getElementById("dif").value = "M";
+    }
+    else if (document.getElementById("range_a").value < 11 || document.getElementById("range_b") < 61) {
+        document.getElementById("dif").value = "H";
+    }
+}
+</script>
+</html>

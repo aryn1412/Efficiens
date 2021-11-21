@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<style>
+
+    html {
+    height: 100%
+}
+    body{
+        margin: 0;
+        font-family: sans-serif;
+        background-image: url(/static/space.jpg );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: ivory;
+
+    }
+.nav{
+    overflow: hidden;
+    background-color: black;
+
+}
+.nav a{
+    float: left;
+    text-decoration: none;
+    color: ivory;
+    padding: 20px 30px;
+    font-size: 25px;
+    text-align: center;
+    font-family: sans-serif;
+}
+.nav a:hover{
+    background-color: #333;
+}
+#tasks{
+    margin: auto;
+    text-align: center;
+}
+#tasks h1{
+    font-size: 40px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 20px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td{
+  background-color: #333;
+  color: ivory;
+}
+td:last-child:hover{
+    background-color: khaki;
+}
+</style>
+<body>
+
+    <div class="nav">
+        <a href="/start">Start</a>
+        <a href="/track">Track</a>
+        <a href="/add">Add</a>
+        <a href="/taskz">Tasks</a>
+    </div>
+    <form id="form" method="POST">
+        <input style="display: none;" type="text" name="task_del" id="task_del">
+    </form>
+<div id="tasks">
+    <h1>Tasks</h1>
+    <div id="all">
+        <table id="table">
+            <tr>
+                <th>Task</th>
+                <th>Difficulty</th>
+                <th>Estimated time</th>
+                <th>Suggested Time</th>
+                <th>Click to Complete</th>
+              </tr>
+              {% for i in all%}
+              <tr class="rows">
+                  <td class="n">{{i.name}}</td>
+                  <td>{{i.difficult}}</td>
+                  <td>{{i.time}}</td>
+                      {% if i.suggested == "H"%}
+                      <td style="color: red;">{{timez.most}}</td>
+                      {% elif i.suggested == "M"%}
+                      <td style="color: orange;">{{timez.mid}}</td>
+                      {% elif i.suggested == "E" %}
+                      <td style="color: green;">{{timez.least}}</td>
+                      {% endif %}
+                  <td onclick="del(this)">Done</td>
+              </tr>
+              {% endfor %}
+        </table>
+
+    </div>
+</div>
+</body>
+<script>
+    function del(a){
+        console.log(a.parentElement)
+        for (let i = 0; i < document.getElementsByClassName("rows").length; i++) {
+            if (document.getElementsByClassName("rows")[i] == a.parentElement){
+                console.log(document.getElementsByClassName("n")[i + 1].innerHTML);
+                document.getElementById("task_del").value = document.getElementsByClassName("n")[i].innerHTML
+                document.getElementById("form").submit()
+            }
+        }
+    }
+</script>
+</html>

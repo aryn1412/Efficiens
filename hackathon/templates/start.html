@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        font-family: sans-serif;
+        scroll-behavior: smooth;
+    }
+    a{
+        text-decoration: none;
+        color: ivory;
+    }
+.nav{
+    overflow: hidden;
+    background-color: black;
+
+}
+.nav a{
+    float: left;
+    text-decoration: none;
+    color: ivory;
+    padding: 20px 30px;
+    font-size: 25px;
+    text-align: center;
+    font-family: sans-serif;
+}
+.nav a:hover{
+    background-color: #333;
+}
+#add{
+    margin: auto;
+    text-align: center;
+    padding: 70px;
+    background-color: grey;
+}
+#add h1{
+    font-size: 40px;
+    color: ivory;
+}
+#add h2{
+    font-size: 39px;
+    color: ivory;
+    padding: 15px;
+    display: inline-block;
+    border: black solid 4px;
+    transition: 0.8s;
+}
+#add h2:hover{
+    background-color: black;
+    color: ivory;
+}
+#start{
+    margin: auto;
+    text-align: center;
+    padding: 60px;
+    background-color: #333;
+}
+#start h1{
+    font-size: 40px;
+    color: ivory;
+}
+#start h2{
+    font-size: 39px;
+    color: ivory;
+    padding: 15px;
+    display: inline-block;
+    border: black solid 4px;
+    transition: 0.8s;
+}
+#start h2:hover{
+    background-color: black;
+    color: ivory;
+}
+#started{
+    display: none;
+    font-size: 50px;
+}
+span{
+    font-size: 49px;
+    color: ivory;
+    padding: 15px;
+    display: inline-block;
+    border: black solid 4px;
+    transition: 0.8s;
+}
+span:hover{
+    background-color: black;
+    color: ivory;
+}
+#ongoing{
+    display: none;
+}
+#tips{
+    background-image: url(/static/purple.jpg );
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: ivory;
+    margin: auto;
+    text-align: center;
+    background-color:darkgray;
+    padding: 50px;
+}
+#tips h1{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+    margin-top: -20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: ivory solid 2px;
+    display: inline-block;
+}
+#tips h2{
+    font-size: 30px;
+}
+</style>
+<body>
+    <div class="nav">
+        <a href="/start">Start</a>
+        <a href="/track">Track</a>
+        <a href="/add">Add</a>
+        <a href="/taskz">Tasks</a>
+    </div>
+{% if data == [] %}
+<div id="add">
+<h1>You haven't Added Any Tasks Yet</h1>
+<h2><a href="/add">Add Now</a></h2>
+<hr>
+</div>
+{% else %}
+<div id="tips">
+    <h1>TIP</h1>
+    <h2 id="tips_data"></h2>
+</div>
+<div id="start">
+    <h1>Start today's Task Right Now</h1>
+    <h2> <a href="/taskz"> Start Now</a></h2>
+    <hr>
+</div>
+
+{% endif %}
+</body>
+<script>
+var tipz = {
+    "all":[ 
+    {"tip":"Finding the system that work for you, the key to true productivity"},
+    {"tip":"Use the Pomodoro Technique - take short brakes between work"},
+    {"tip":"Get Some sleep , sleep is a crucial component of success and increase productivity"},
+    {"tip":" Plan for tommorrow ,Planning the night before can help you start the day with your priorities in check."},
+    {"tip":"It’s important to be mindful of what your boundaries are and how to message them to others."},
+]
+}
+tips()
+function tips(){
+    let x = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+    console.log(tipz.all[x - 1]);
+    document.getElementById("tips_data").innerHTML = tipz.all[x - 1].tip;
+}
+</script>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+</head>
+<style>
+body{
+    font-family: sans-serif;
+    margin: 0;
+}
+#form{
+    display: none;
+}
+#bar{
+    width: 80%;
+    margin: auto;
+    margin-top: 60px;
+    background-color:gray;
+}
+#width{
+    width: 1%;
+    background-color: indigo;
+    height: 40px;
+    color: ivory;
+    text-align: center;
+    transition: 0.5s;
+}
+#info{
+    
+    padding: 50px;
+    width: 60%;
+    margin: auto;
+    height: 300px;
+}
+#ques{
+    color: black;
+    font-size: 40px;
+}
+#options{
+    font-size: 25px;
+
+}
+#next{
+    width: 70%;
+    margin: auto;
+    text-align: right;
+    cursor: pointer;
+}
+#question{
+    font-size: 40px;
+    text-align: left;
+}
+.time{
+    font-size: 27px;
+    color: rgb(0, 0, 0);
+    padding: 15px;
+    display:none;
+    border: black solid 4px;
+    transition: 0.8s;
+}
+.time:hover{
+    background-color: black;
+    color: ivory;
+}
+input{
+    width: 100%;
+    font-size: 23px;
+
+
+}
+#next h1:hover{
+    background-color: black;
+    color: ivory;
+}
+</style>
+<body>
+<div id="bar"><div id="width"></div></div>
+<br>
+<div id="info">
+<div id="ques"><h1 id="question"></h1></div>
+<form id="options" name="options" method="POST">
+<input id="pt" type="text" style="display: none;" name="pt" value="">
+<input id="pt2" type="text" style="display: none;" name="pt2" value="">
+<input id="pt3" type="text" style="display: none;" name="pt3" value="">
+<input id="user" type="text" name="user" value="">
+    <h1 onclick="find(this)" class="time">Morning</h1> &nbsp <h1 onclick="find(this)" class="time">Afternoon</h1> &nbsp <h1 onclick="find(this)" class="time">Evening</h1>
+
+</form>
+<div id="next">
+    <h1 style="border: solid black 3px; padding: 7px; display: inline-block; position: absolute; bottom: 20%;" onclick="progress()">Next</h1>
+    
+</div>
+</div>
+</body>
+<script>
+var quez = ["What is Your Name?" , "At What Time of the Day Are you Most Productive?", "At What Time of the Day Are you Least Productive?"]
+var width = 34;
+var ind = -1;
+progress()
+
+function progress(){
+    ind += 1;
+    if(ind == 3){
+        if (document.getElementById("pt").value == "Morning" && document.getElementById("pt2").value == "Afternoon" || document.getElementById("pt").value == "Afternoon" && document.getElementById("pt2").value == "Morning"){
+                document.getElementById("pt3").value = "Evening" 
+            }
+            if (document.getElementById("pt").value == "Morning" && document.getElementById("pt2").value == "Evening" || document.getElementById("pt").value == "Evening" && document.getElementById("pt2").value == "Morning"){
+                document.getElementById("pt3").value = "Afternoon" 
+            }
+            if (document.getElementById("pt").value == "Afternoon" && document.getElementById("pt2").value == "Evening" || document.getElementById("pt").value == "Evening" && document.getElementById("pt2").value == "Afternoon"){
+                document.getElementById("pt3").value = "Morning" 
+            }
+        document.getElementById("options").submit()
+    }
+    document.getElementById("question").innerHTML = quez[ind];
+    if(ind == 1 || ind == 2){
+        document.getElementById("user").style.display = "none";
+        for (let i = 0; i < document.getElementsByClassName("time").length; i++) {
+            document.getElementsByClassName("time")[i].style.display = "inline-block";
+        }
+    }
+    if(ind == 0 | ind > 3){
+        return
+    }
+    document.getElementById("width").style.width = width + "%";
+    width += 50;
+}
+function find(a) {
+    for (let i = 0; i < document.getElementsByClassName("time").length; i++) {
+        document.getElementsByClassName("time")[i].style.color = "black";
+        document.getElementsByClassName("time")[i].style.backgroundColor = "white" ;
+        if(document.getElementsByClassName("time")[i] == a){
+        document.getElementsByClassName("time")[i].style.color = "ivory";
+        document.getElementsByClassName("time")[i].style.backgroundColor = "black" ;
+            console.log(document.getElementsByClassName("time")[i] , a.innerHTML);
+            if (ind == 1){document.getElementById("pt").value = a.innerHTML;}
+            if (ind == 2){document.getElementById("pt2").value = a.innerHTML;}
+            
+
+        
+
+
+        }
+    }
+
+}
+</script>
+</html>
